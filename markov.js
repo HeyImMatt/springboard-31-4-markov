@@ -17,7 +17,14 @@ class MarkovMachine {
    *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
 
   makeChains() {
-    // TODO
+    this.chains = {};
+    this.words.forEach((word, i) => {
+      let nextWord = this.words[i + 1] || null;
+      if (!this.chains[word]) {
+        this.chains[word] = [nextWord]
+      } else this.chains[word] = [...this.chains[word], nextWord];
+    })
+    return this.chains;
   }
 
 
@@ -27,3 +34,5 @@ class MarkovMachine {
     // TODO
   }
 }
+
+module.exports = { MarkovMachine };
